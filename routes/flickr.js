@@ -15,7 +15,7 @@ router.get('/', function(req, res, next) {
 
     Flickr.authenticate(flickrOptions, function(error, flickr) {
         flickr.photos.search({
-            text: "red+panda"
+            text: "guitar"
         }, function(err, result) {
             res.render('flickr', { resultats: result });
             console.log(result);
