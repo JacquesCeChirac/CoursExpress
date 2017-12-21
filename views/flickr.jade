@@ -1,0 +1,11 @@
+extends layout
+
+block content
+    h1 Hello Flickr
+    p Bienvenue a toto
+    p toto
+
+    ul
+        each photo in resultats.photos.photo
+            li
+                img(src="https://farm"+photo.farm+".staticflickr.com/"+photo.server+"/"+photo.id+"_"+photo.secret+".jpg")
