@@ -11,10 +11,8 @@ block content
                     form(action="/flickr/", method="get")
                         input(placeholder="Tappez votre recherche ici", name="find", id="find", type="text", class="validate")
 
-                if !param
-                    h5(class="center-align col s10 offset-s1") Aucune recherche faite alors voici des images de : #{recherche}
-                else
-                    h5(class="center-align col s10 offset-s1") Résultats de votre recherche sur le mot : #{recherche}
+                //-do something
+                h5(class="center-align col s10 offset-s1") Résultats de votre recherche sur le mot : #{recherche}
 
                 div(class="grid" data-masonry='{ "itemSelector": ".grid-item", "columnWidth": 200 }')
                 each photo in resultats.photos.photo
