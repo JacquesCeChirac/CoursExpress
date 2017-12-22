@@ -3,15 +3,18 @@ extends layout
 block content
     div(class="container")
         h2 Hello, bienvenue sur GilFlick
-        h5 Votre outil de recherche de photos Flickr
+        h4 Votre outil de recherche de photos Flickr
 
-        //a(class="waves-effect waves-light btn") button
         div(class="row")
             div(class="col s12")
                 div(class="input-field col s6 offset-s3")
-                    input(placeholder="Tappez votre recherche ici" id="first_name" type="text" class="validate")
-                    //label(for="first_name") First Name
+                    form(action="/flickr/", method="get")
+                        input(placeholder="Tappez votre recherche ici", name="find", id="find", type="text", class="validate")
 
+                if !param
+                    h5(class="center-align col s10 offset-s1") Aucune recherche faite alors voici des images de : #{recherche}
+                else
+                    h5(class="center-align col s10 offset-s1") Résultats de votre recherche sur le mot : #{recherche}
 
                 div(class="grid" data-masonry='{ "itemSelector": ".grid-item", "columnWidth": 200 }')
                 each photo in resultats.photos.photo
