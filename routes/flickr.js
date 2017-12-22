@@ -1,7 +1,8 @@
 var express = require('express');
 var router = express.Router();
+var MongoClient = require('mongodb').MongoClient;
+const assert = require('assert');
 
-/* GET home page. */
 router.get('/', function(req, res, next) {
     if (req.query['find']){
         recherche = req.query['find'];
@@ -23,8 +24,24 @@ router.get('/', function(req, res, next) {
             text: recherche
         }, function(err, result) {
             res.render('flickr', {resultats: result});
+            MongoClient.connect("mongodb://localhost:27017/", function(err, client) {
+                if(!err) {
+                    console.log("We are connected");
+                }
+                var db = client.db("GilFlick");
+                console.log(db);
+                const insertDocuments = function(db, callback) {
+                    const collection = db.collection('recherches');
+                    collection.insertMany([
+                        {a : 10}
+                    ], function(err, result) {
+                        assert.equal(err, null);
+                        callback(result);
+                    });
+                };
+                insertDocuments(db, function(){ console.log("Finished!"); });
+            });
             if(err) { throw new Error(err); }
-            // do something with result
         })
     });
 });
