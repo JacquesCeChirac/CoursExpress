@@ -32,8 +32,15 @@ router.get('/', function(req, res, next) {
                 console.log(db);
                 const insertDocuments = function(db, callback) {
                     const collection = db.collection('recherches');
+                    for (var i = 0; result.length; i++){
+                        console.log(i);
+                    }
+                    var xxx = {};
+                    xxx[recherche] = [{
+
+                    }];
                     collection.insertMany([
-                        {a : 10}
+                        xxx
                     ], function(err, result) {
                         assert.equal(err, null);
                         callback(result);
